@@ -42,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget _buildUI(BuildContext context) {
     return SafeArea(
         child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
+      padding: const EdgeInsets.only(left: 15.0, top: 30.0, right: 15),
       child: Column(
         children: [_headerText(context), _loginForm(context)],
       ),
@@ -137,15 +137,20 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _createAnAccountLink() {
-    return const Expanded(
+    return Expanded(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Text("Don't have an Account? "),
-          Text(
-            'Sign Up',
-            style: TextStyle(fontWeight: FontWeight.w800),
+          const Text("Don't have an Account? "),
+          GestureDetector(
+            onTap: () {
+              _navigationService.pushNamed('/register');
+            },
+            child: const Text(
+              'Sign Up',
+              style: TextStyle(fontWeight: FontWeight.w800),
+            ),
           )
         ],
       ),

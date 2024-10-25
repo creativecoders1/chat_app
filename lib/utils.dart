@@ -1,6 +1,7 @@
 import 'package:chat_app/firebase_options.dart';
 import 'package:chat_app/services/alert_service.dart';
 import 'package:chat_app/services/auth_service.dart';
+import 'package:chat_app/services/media_service.dart';
 import 'package:chat_app/services/navigation_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,6 +16,7 @@ Future<void> registerServices() async {
   getIt.registerSingleton<AuthService>(AuthService());
   getIt.registerSingleton<NavigationService>(NavigationService());
   getIt.registerSingleton<AlertService>(AlertService());
+  getIt.registerSingleton<MediaService>(MediaService());
 }
 
 double screenWidth(BuildContext context) {
