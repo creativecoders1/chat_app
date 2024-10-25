@@ -4,6 +4,7 @@ import 'package:chat_app/widgets/custom_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
+import '../services/alert_service.dart';
 import '../services/auth_service.dart';
 import '../services/navigation_service.dart';
 
@@ -19,14 +20,16 @@ class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> _loginFormKey = GlobalKey<FormState>();
   late AuthService _authService;
   late NavigationService _navigationService;
-  String email = ''; // Initialize non-nullable
-  String password = ''; // Initialize non-nullable
+  late AlertService _alertService;
+  String email = '';
+  String password = '';
 
   @override
   void initState() {
     super.initState();
     _authService = _getIt.get<AuthService>();
     _navigationService = _getIt.get<NavigationService>();
+    _alertService = AlertService();
   }
 
   @override
@@ -118,12 +121,9 @@ class _LoginPageState extends State<LoginPage> {
             if (result) {
               _navigationService.pushReplacementNamed('/home');
             } else {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Login failed. Please try again.'),
-                  backgroundColor: Colors.red,
-                ),
-              );
+              _alertService.showToast(
+                  text: "Failed to login, Please try again!",
+                  icon: Icons.error);
             }
           }
         },
