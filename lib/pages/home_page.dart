@@ -45,6 +45,19 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
+      body: _buildUi(),
     );
+  }
+
+  Widget _buildUi() {
+    return SafeArea(
+        child: Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
+            child: _childList()));
+  }
+
+  Widget _childList() {
+    return Container();
   }
 }
