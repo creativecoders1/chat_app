@@ -32,6 +32,13 @@ Future<void> registerServices() async {
   getIt.registerSingleton<DatabaseService>(DatabaseService());
 }
 
+String generateChatID({required String uid1, required String uid2}) {
+  List uids = [uid1, uid2];
+  uids.sort();
+  String chatId = uids.fold("", (id, uid) => "$id$uid");
+  return chatId;
+}
+
 /// Returns the screen width for responsive UI design.
 double screenWidth(BuildContext context) {
   return MediaQuery.of(context).size.width;
